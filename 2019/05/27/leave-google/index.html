@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="阻止隐私侵入式服务利用你的数据，现在是时候放弃谷歌、Facebook等公司了，这篇文章介绍了可以用来替代Google所有服务的隐私友好的方案。本文的作者是Matthias，他是Tutanota的联合创始人和开发者。原文链接：How to leave Google behind: Quick guide to take back your privacy online.  对很多人来说，互联网就是G">
+<meta name="keywords" content="谷歌">
+<meta property="og:type" content="article">
+<meta property="og:title" content="怎样抛弃Google：拿回在线隐私的快速指南">
+<meta property="og:url" content="http://www.unimits.com/2019/05/27/leave-google/index.html">
+<meta property="og:site_name" content="UNIMITS">
+<meta property="og:description" content="阻止隐私侵入式服务利用你的数据，现在是时候放弃谷歌、Facebook等公司了，这篇文章介绍了可以用来替代Google所有服务的隐私友好的方案。本文的作者是Matthias，他是Tutanota的联合创始人和开发者。原文链接：How to leave Google behind: Quick guide to take back your privacy online.  对很多人来说，互联网就是G">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.unimits.com/images/google-watching-you.png">
+<meta property="og:updated_time" content="2019-05-27T15:02:10.060Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="怎样抛弃Google：拿回在线隐私的快速指南">
+<meta name="twitter:description" content="阻止隐私侵入式服务利用你的数据，现在是时候放弃谷歌、Facebook等公司了，这篇文章介绍了可以用来替代Google所有服务的隐私友好的方案。本文的作者是Matthias，他是Tutanota的联合创始人和开发者。原文链接：How to leave Google behind: Quick guide to take back your privacy online.  对很多人来说，互联网就是G">
+<meta name="twitter:image" content="http://www.unimits.com/images/google-watching-you.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://www.unimits.com/2019/05/27/leave-google/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>怎样抛弃Google：拿回在线隐私的快速指南 | UNIMITS</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">UNIMITS</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-主页">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>主页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-书影音">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/bideo/" rel="section"><i class="menu-item-icon fa fa-fw fa-diamond"></i> <br>书影音</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-关于">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.unimits.com/2019/05/27/leave-google/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="unimits">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="UNIMITS">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">怎样抛弃Google：拿回在线隐私的快速指南
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-27 15:29:03 / 修改时间：23:02:10" itemprop="dateCreated datePublished" datetime="2019-05-27T15:29:03+08:00">2019-05-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote><p>阻止隐私侵入式服务利用你的数据，现在是时候放弃谷歌、Facebook等公司了，这篇文章介绍了可以用来替代Google所有服务的隐私友好的方案。本文的作者是Matthias，他是Tutanota的联合创始人和开发者。原文链接：<a href="https://tutanota.com/blog/posts/how-to-leave-google-gmail" target="_blank" rel="noopener">How to leave Google behind: Quick guide to take back your privacy online.</a></p>
+</blockquote>
+<p><img src="/images/google-watching-you.png" alt><br>对很多人来说，互联网就是Google：搜索、免费邮箱、视频 - Google是这些领域的主要玩家，但是Google使用所提供的服务搜集来的数据发布有针对性的广告，并且和互联网巨头们分享数据从而获得大量的利润。现在是阻止这种无限的数据挖掘同时拿回我们隐私权的时候了！本指南告诉你可以使用一些安全的替代方案以避免向Google和Facebook共享你的数据。</p>
+<p>越来越多的人明白每个人都想要他们的数据，但只有一种方法可以阻止大规模的监视：那就是使用隐私友好的工具，最好能够内置加密，随着隐私友好的工具数量和质量不断增加，越来越多的人开始保护自己的个人数据，抛弃Gmail和Facebook。</p>
+<p>Google现在也意识到很多人都想保护他们的个人数据，Google现在<a href="https://arstechnica.com/tech-policy/2017/09/google-promised-not-to-scan-gmail-for-targeted-ads-but-for-how-long/" target="_blank" rel="noopener">承诺不再扫描你的邮件</a>，但是这也仅仅是一个讨好用户的营销计划，这将使我们有更多的理由离开Gmail，每个人都知道了Google仍然有能力扫描你的整个Gmail收件箱，无扫描的用户协议很可能像<a href="https://arstechnica.com/tech-policy/2017/09/google-promised-not-to-scan-gmail-for-targeted-ads-but-for-how-long/" target="_blank" rel="noopener">Gmail端到端加密项目</a>一样不了了之。</p>
+<h1 id="抛弃Google、Facebook等公司的替代方案"><a href="#抛弃Google、Facebook等公司的替代方案" class="headerlink" title="抛弃Google、Facebook等公司的替代方案"></a>抛弃Google、Facebook等公司的替代方案</h1><h2 id="从Gmail切换到Tutanota"><a href="#从Gmail切换到Tutanota" class="headerlink" title="从Gmail切换到Tutanota"></a>从Gmail切换到Tutanota</h2><p>如果想要最私密的替代方案，请从Gmail切换到我们的<a href="https://tutanota.com" target="_blank" rel="noopener">加密邮件</a>服务，Tutanota的整个邮箱都使用端到端加密以避免受到窥探，就算我们的开发人员也无法阅读你的邮件。</p>
+<p>你可以发送发送端到端加密邮件，这样就能够确保只有你和你预期的收件人才能阅读邮件，因为邮件加了密，Tutanota也不能利用你的数据打广告，事实上Tutanota是完全没有广告的。</p>
+<p><strong>现在就尝试一下，立即注册你的加密邮件帐号，Tutanota提供了一个不收集你数据的、安全的Gmail替代方案使你很轻松地就可以离开Gmail。</strong></p>
+<p>除了默认内置加密，Tutanota还有如下特性：</p>
+<ul>
+<li>你可以注册<a href="https://tutanota.com/blog/posts/anonymous-email" target="_blank" rel="noopener">匿名邮箱</a>，不需要提供电话号码。</li>
+<li>使用先进的<a href="https://tutanota.com/blog/posts/tutanota-uses-dane-on-top-of-ssl-pfs" target="_blank" rel="noopener">SSL防护，支持DNSSEC、DANE、DMARC、DKIM、PFS和STARTTLS加密协议</a>。</li>
+<li>在<a href="https://securityheaders.io/?q=https%3A%2F%2Fmail.tutanota.com%2F" target="_blank" rel="noopener">Securityheaders.io</a>上获得A+评级。</li>
+<li>在F-Droid市场发布的安卓APP中，是Gmail<a href="https://tutanota.com/blog/posts/open-source-email" target="_blank" rel="noopener">最好的开源替代方案</a>。</li>
+<li>让你使用2FA（U2F）和TOTP，我们建议将U2F与硬件令牌或<a href="https://f-droid.org/en/packages/org.shadowice.flocke.andotp/" target="_blank" rel="noopener">来自F-Droid的开源双因素身份验证应用程序andOTP</a>一起使用。</li>
+</ul>
+<h2 id="不再使用Google搜索，尝试Searx-me和Ecosia"><a href="#不再使用Google搜索，尝试Searx-me和Ecosia" class="headerlink" title="不再使用Google搜索，尝试Searx.me和Ecosia"></a>不再使用Google搜索，尝试Searx.me和Ecosia</h2><p>Google搜索被广泛使用，因为它是以前唯一一个能够快速检索出可靠结果的搜索引擎。但是，在过去的几年中隐私友好的搜索引擎已经快速赶上，没有理由不使用这些赶上来的搜索引擎，我们推荐使用<a href="https://searx.me/" target="_blank" rel="noopener">开源替代Searx.me</a>和<a href="https://www.ecosia.org/" target="_blank" rel="noopener">Ecosia</a>，后者是一个公益组织，他们将至少80%的剩余所得公益捐献，当前正关注植树。</p>
+<h2 id="从Chrome切换到Brave、Firefox或者Tor浏览器"><a href="#从Chrome切换到Brave、Firefox或者Tor浏览器" class="headerlink" title="从Chrome切换到Brave、Firefox或者Tor浏览器"></a>从Chrome切换到Brave、Firefox或者Tor浏览器</h2><p>当前有好几种浏览器提供比Google Chrome更多的隐私保护，<a href="https://brave.com/" target="_blank" rel="noopener">Brave</a>是一个自动拦截广告和跟踪的开源浏览器，<a href="https://www.mozilla.org/en-US/firefox/" target="_blank" rel="noopener">Firefox</a>是一个以尊重用户隐私著称的成熟浏览器，如果你需要在线浏览时对匿名性有更高的要求，我们推荐你使用<a href="https://www.torproject.org/" target="_blank" rel="noopener">Tor浏览器</a>。</p>
+<p>在安卓平台上，我们推荐你使用开源的<a href="https://f-droid.org/en/packages/com.stoutner.privacybrowser.standard/" target="_blank" rel="noopener">隐私浏览器</a>或<a href="https://f-droid.org/en/packages/org.mozilla.fennec_fdroid/" target="_blank" rel="noopener">Fennec</a>。</p>
+<h2 id="不再使用Google网盘，尝试Tresorit"><a href="#不再使用Google网盘，尝试Tresorit" class="headerlink" title="不再使用Google网盘，尝试Tresorit"></a>不再使用Google网盘，尝试Tresorit</h2><p>当你使用Google网盘的时候，有一点你必须知道，那就是所有的文件都是以非加密的方式存储在Google服务器上的，每一个获得服务器访问权限的人都能够很容易地拷贝和阅读这些文件，<a href="https://tresorit.com/" target="_blank" rel="noopener">Tresorit</a>是一个加密的替代方案，这个付费服务提供端到端加密的文件共享和同步，你可以将加密后的文件安全地存储在云端，没有你的允许其他任何人都不能访问或阅读你的文件。</p>
+<h2 id="使用Vimeo看视频，不使用Youtube"><a href="#使用Vimeo看视频，不使用Youtube" class="headerlink" title="使用Vimeo看视频，不使用Youtube"></a>使用Vimeo看视频，不使用Youtube</h2><p>对Youtube的一个非常好的替代是<a href="https://vimeo.com/" target="_blank" rel="noopener">Vimeo</a>，如果你想找的视频在Vimeo上面没有，您可以通过YouTube的“youtube-nocookie”域搜索和观看DuckDuckGo上的YouTube视频，即便没有完全离开Google，但这种方式能够得到更好的隐私保护。</p>
+<p>如果你确实非常想看Youtube上的一个视频，我们推荐你通过<a href="https://invidio.us/" target="_blank" rel="noopener">Invidio</a>或<a href="https://f-droid.org/en/packages/org.schabi.newpipe/" target="_blank" rel="noopener">NewPie（由F-Droid市场提供的一个非常酷炫的安卓应用）</a>观看。</p>
+<h2 id="使用OpenStreetMap替代Google地图"><a href="#使用OpenStreetMap替代Google地图" class="headerlink" title="使用OpenStreetMap替代Google地图"></a>使用OpenStreetMap替代Google地图</h2><p>当你在网上查找地点时，<a href="https://www.openstreetmap.org/" target="_blank" rel="noopener">OpenStreetMap</a>是Google Maps一个很好的替代，它是一个开源项目，它的目标是创建一个免费的可编辑的世界地图，你可以在F-Droid市场下载<a href="https://f-droid.org/en/packages/net.osmand.plus/" target="_blank" rel="noopener">OsmAnd</a>应用。</p>
+<h2 id="抛弃Google-Play市场，从F-Droid上面下载应用"><a href="#抛弃Google-Play市场，从F-Droid上面下载应用" class="headerlink" title="抛弃Google Play市场，从F-Droid上面下载应用"></a>抛弃Google Play市场，从F-Droid上面下载应用</h2><p>如果你使用的是一部安卓手机，要完全摆脱Google有点难。首先，你需要从<a href="https://f-droid.org/" target="_blank" rel="noopener">F-Droid</a>下载所有的应用，而不是Google Play市场，F-Droid是一个非常棒的替代，特别是对于开源爱好者来说。如果你从F-Droid下载应用，你可以放心，他们将和Google没有任何关系。</p>
+<p>F-Droid上面有不少很棒的应用，我喜欢的比如：<a href="https://f-droid.org/en/packages/com.kunzisoft.keepass.libre/" target="_blank" rel="noopener">KeePass DX</a>、<a href="https://f-droid.org/en/packages/org.blokada.alarm/" target="_blank" rel="noopener">ad blocker Blokada</a>、<a href="https://f-droid.org/en/packages/eu.faircode.netguard/" target="_blank" rel="noopener">NetGuard</a>、<a href="https://f-droid.org/en/packages/net.sourceforge.opencamera/" target="_blank" rel="noopener">Open Camera</a>、<a href="https://f-droid.org/en/packages/com.menny.android.anysoftkeyboard/" target="_blank" rel="noopener">AnySoftKeyboard</a>、<a href="https://f-droid.org/en/packages/com.amaze.filemanager/" target="_blank" rel="noopener">Amaze File Manager</a>、<a href="https://f-droid.org/en/packages/com.kaliturin.blacklist/" target="_blank" rel="noopener">Blacklist Blocker</a>。</p>
+<p>如果我们漏掉了任何重要的安卓应用，请在评论中告诉我们。</p>
+<h2 id="把你的安卓系统替换为LineageOS"><a href="#把你的安卓系统替换为LineageOS" class="headerlink" title="把你的安卓系统替换为LineageOS"></a>把你的安卓系统替换为LineageOS</h2><p>如果你正在使用一部安卓手机同时很想摆脱Google，我们建议你在手机上安装<a href="https://lineageos.org/" target="_blank" rel="noopener">LineageOS</a>操作系统，LineageOS是一个不需要Google帐号的安卓系统，LineageOS是停止更新的CyanogenMod项目中最受欢迎的分支。</p>
+<p>当你想买一部新的智能手机的时候，考虑一下<a href="https://puri.sm/shop/librem-5/" target="_blank" rel="noopener">Purism 5</a>，这是一款免费的专注于隐私和安全的“No-Google”手机。</p>
+<h2 id="退出Facebook，使用Mastodon"><a href="#退出Facebook，使用Mastodon" class="headerlink" title="退出Facebook，使用Mastodon"></a>退出Facebook，使用Mastodon</h2><p><strong>编辑于2018-04-04：</strong>由于最近的<a href="https://www.bbc.com/news/technology-43649018" target="_blank" rel="noopener">Facebook丑闻</a>，我们觉得有必要更新这篇文章，并添加隐私友好的社交媒体替代品。</p>
+<p>大多数社交媒体站点的商业模式都和Google类似，它们跟踪和发布针对性的广告，因此我们建议你退出Facebook，停止与朋友分享你的私人信息，一个比较好的替代方案是<a href="https://mastodon.social/invite/nzMxCf2G" target="_blank" rel="noopener">Mastodon安卓版，我们邀请你加入我们</a>或<a href="https://diasporafoundation.org/" target="_blank" rel="noopener">Diaspora</a>。</p>
+<p>访问<a href="https://f-droid.org/en/packages/com.keylesspalace.tusky/" target="_blank" rel="noopener">Mastodon安卓版你可以使用F-Droid市场的Tusky应用</a>或者<a href="https://f-droid.org/en/packages/fr.gouv.etalab.mastodon/" target="_blank" rel="noopener">Fedilab</a>。</p>
+<h2 id="使用Tor或者VPN"><a href="#使用Tor或者VPN" class="headerlink" title="使用Tor或者VPN"></a>使用Tor或者VPN</h2><p>当你在使用互联网时，你的互联网服务提供商可以看到、监控和记录你访问的每个Web站点，如果你想确保你的浏览器历史记录保密，我们建议你使用<a href="https://tutanota.com/blog/posts/tutanota-and-tor" target="_blank" rel="noopener">Tor</a>或者VPN，比如<a href="https://tutanota.com/blog/posts/private-internet-access-pia" target="_blank" rel="noopener">Private Internet Access</a>。</p>
+<h2 id="现在就退出监控服务，改变未来的互联网"><a href="#现在就退出监控服务，改变未来的互联网" class="headerlink" title="现在就退出监控服务，改变未来的互联网"></a>现在就退出监控服务，改变未来的互联网</h2><p>我们都知道当我们上网的时候，大规模的监视一直是存在的，然而我们每个人都可以让在线监控变得困难，重要的一步就是使用隐私友好的互联网服务，如果可能最好是内置加密的。</p>
+<p>现在就开始切换吧，你将会发现拿回隐私比想象中容易得多。</p>
+<hr>
+<p>推荐扩展阅读：<a href="https://tutanota.com/blog/posts/data-privacy-day" target="_blank" rel="noopener">数据隐私日：为什么隐私很重要以及为什么我们要争取我们的隐私</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/谷歌/" rel="tag"># 谷歌</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/05/awesome-things/" rel="next" title="优秀的列表">
+                <i class="fa fa-chevron-left"></i> 优秀的列表
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/07/09/javascript/" rel="prev" title="JavaScript所罗门">
+                JavaScript所罗门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="unimits">
+            
+              <p class="site-author-name" itemprop="name">unimits</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-nd.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#抛弃Google、Facebook等公司的替代方案"><span class="nav-number">1.</span> <span class="nav-text">抛弃Google、Facebook等公司的替代方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从Gmail切换到Tutanota"><span class="nav-number">1.1.</span> <span class="nav-text">从Gmail切换到Tutanota</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不再使用Google搜索，尝试Searx-me和Ecosia"><span class="nav-number">1.2.</span> <span class="nav-text">不再使用Google搜索，尝试Searx.me和Ecosia</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从Chrome切换到Brave、Firefox或者Tor浏览器"><span class="nav-number">1.3.</span> <span class="nav-text">从Chrome切换到Brave、Firefox或者Tor浏览器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不再使用Google网盘，尝试Tresorit"><span class="nav-number">1.4.</span> <span class="nav-text">不再使用Google网盘，尝试Tresorit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Vimeo看视频，不使用Youtube"><span class="nav-number">1.5.</span> <span class="nav-text">使用Vimeo看视频，不使用Youtube</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用OpenStreetMap替代Google地图"><span class="nav-number">1.6.</span> <span class="nav-text">使用OpenStreetMap替代Google地图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抛弃Google-Play市场，从F-Droid上面下载应用"><span class="nav-number">1.7.</span> <span class="nav-text">抛弃Google Play市场，从F-Droid上面下载应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把你的安卓系统替换为LineageOS"><span class="nav-number">1.8.</span> <span class="nav-text">把你的安卓系统替换为LineageOS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#退出Facebook，使用Mastodon"><span class="nav-number">1.9.</span> <span class="nav-text">退出Facebook，使用Mastodon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Tor或者VPN"><span class="nav-number">1.10.</span> <span class="nav-text">使用Tor或者VPN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#现在就退出监控服务，改变未来的互联网"><span class="nav-number">1.11.</span> <span class="nav-text">现在就退出监控服务，改变未来的互联网</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-globe"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">unimits</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '7210ed8deb5da4e17b76',
+    clientSecret: '7b81a6f4edce1aec3e667bf46c342e214d85c44c',
+    repo: 'uni_mit_comment',
+    owner: 'lendo',
+    admin: ['lendo'],
+    id: md5(location.pathname),
+    
+      language: 'zh-CN',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
